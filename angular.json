@@ -62,6 +62,8 @@
                   "inlineCritical": false
                 }
               },
+              "extractLicenses": false,
+              "sourceMap": true,
               "ssr": false,
               "prerender": false
             },
