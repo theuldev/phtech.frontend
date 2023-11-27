@@ -23,6 +23,7 @@
             "polyfills": [
               "zone.js"
             ],
+            "allowedCommonJsDependencies": ["sweetalert2"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -51,10 +52,23 @@
                   "maximumError": "4mb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                }
+              }
             },
             "development": {
-              "optimization": false,
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                }
+              },
               "extractLicenses": false,
               "sourceMap": true,
               "ssr": false,
