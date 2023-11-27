@@ -23,7 +23,9 @@
             "polyfills": [
               "zone.js"
             ],
-            "allowedCommonJsDependencies": ["sweetalert2"],
+            "allowedCommonJsDependencies": [
+              "sweetalert2"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -59,7 +61,9 @@
                   "minify": true,
                   "inlineCritical": false
                 }
-              }
+              },
+              "ssr": false,
+              "prerender": false
             },
             "development": {
               "optimization": {
