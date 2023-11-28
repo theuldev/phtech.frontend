@@ -18,6 +18,12 @@ export class RegisterUserComponent {
   userForm!: FormGroup;
   isValid!: boolean;
 
+  showPassword = false;
+  typeInputPassword = 'text'
+  showConfirmPassword = false;
+  typeInputConfirmPassword = 'text'
+
+
   private cepService: CepService;
   private userService: UserService;
   constructor(private router: Router, _cepService: CepService, private fb: FormBuilder, _userService: UserService) {
@@ -100,4 +106,23 @@ export class RegisterUserComponent {
       logradouro: data.logradouro,
     });
   }
+
+   toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+    if (this.showPassword) {
+      this.typeInputPassword = 'password'
+    }else{
+      this.typeInputPassword = 'text'
+    }
+  }
+   toggleShowConfirmPassword() {
+    this.showConfirmPassword = !this.showConfirmPassword;
+    if (this.showConfirmPassword) {
+      this.typeInputConfirmPassword = 'password'
+    }else{
+      this.typeInputConfirmPassword = 'text'
+    }
+  }
+
+
 }

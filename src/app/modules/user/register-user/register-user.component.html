@@ -54,12 +54,13 @@
                     </div>
                     <div class="form-floating mb-2  me-3">
 
-                        <select class="form-select rounded-4" id="sex-floating-select" aria-label="Sexo" formControlName="sex">
+                        <select class="form-select rounded-4" id="sex-floating-select" aria-label="Sexo"
+                            formControlName="sex">
                             <option selected value="Masculino">Masculino</option>
                             <option value="Feminino">Feminino</option>
                             <option value="Carrosexual">Carrosexual</option>
                         </select>
-                         <label for="sex-floating-select" class="form-label">Sexo</label>
+                        <label for="sex-floating-select" class="form-label">Sexo</label>
                         <div class="text-danger text-start pt-2 fw-semibold" style="font-size: 13px;"
                             *ngIf="submitted && f['sex'].errors  && f['sex'].touched">
                             <div *ngIf=" submitted && f['sex'].errors['required']  && f['sex'].touched">O sexo é
@@ -150,10 +151,13 @@
 
                 <div class="input-group  mb-2">
                     <div class="form-floating mb-2 me-3">
-
-                        <input type="password" id="floating-input-password" class="form-control rounded-4"
-                            placeholder="Senha" formControlName="password" />
+                    <input type="{{this.typeInputPassword}}" id="floating-input-password" class="form-control rounded-4"
+                        placeholder="Senha" formControlName="password" />
+                                    
                         <label id="label-password" class="form-label" for="floating-input-password">Senha</label>
+                        <i id="togglePassword"
+                            [ngClass]="{'bi bi-eye-slash': showPassword, 'bi bi-eye': !showPassword }"
+                            (click)="toggleShowPassword()"></i>
                         <div class="text-danger text-start pt-2 fw-semibold" style="font-size: 13px;"
                             *ngIf="submitted && f['password'].errors  && f['password'].touched">
                             <div *ngIf=" submitted && f['password'].errors['required']  && f['password'].touched">A
@@ -169,12 +173,14 @@
                     </div>
                     <div class="form-floating mb-2">
 
-                        <input type="password" id="floating-input-confirm-password" class="form-control rounded-4"
+                        <input type="{{this.typeInputConfirmPassword}}" id="floating-input-confirm-password" class="form-control rounded-4"
                             placeholder="Confirme a Senha" formControlName="passwordConfirm">
                         <label id="label-confirm-password" class="form-label"
                             for="floating-input-confirm-password">Confirme
                             a senha</label>
-
+                        <i id="toggleConfirmPassword"
+                            [ngClass]="{'bi bi-eye-slash': showConfirmPassword, 'bi bi-eye': !showConfirmPassword }"
+                            (click)="toggleShowConfirmPassword()"></i>
 
                         <div class="text-danger text-start pt-2 fw-semibold" style="font-size: 13px;"
                             *ngIf="submitted && f['passwordConfirm'].errors  && f['passwordConfirm'].touched">

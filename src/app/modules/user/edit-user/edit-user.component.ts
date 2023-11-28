@@ -16,15 +16,20 @@ import { LocalService } from '../../../shared/services/local.service/local.servi
 })
 export class EditUserComponent {
 
- submitted = false;
+  submitted = false;
   userForm!: FormGroup;
   isValid!: boolean;
-  userId!:any;
- user_cache =  JSON.parse(this.localService.getItem('user_info')!)
+  userId!: any;
+  user_cache = JSON.parse(this.localService.getItem('user_info')!)
+  showPassword = false;
+  typeInputPassword = 'text'
+  showConfirmPassword = false;
+  typeInputConfirmPassword = 'text'
+
 
   private cepService: CepService;
   private userService: UserService;
-  constructor(private router: Router, _cepService: CepService, private fb: FormBuilder, _userService:UserService, private localService: LocalService) {
+  constructor(private router: Router, _cepService: CepService, private fb: FormBuilder, _userService: UserService, private localService: LocalService) {
     this.cepService = _cepService;
     this.userService = _userService;
 
@@ -42,35 +47,35 @@ export class EditUserComponent {
       uf: ['', Validators.required],
       localidade: ['', Validators.required],
       bairro: ['', Validators.required],
-    },{
-      validator:  PasswordMatchValidator("password","passwordConfirm"),
+    }, {
+      validator: PasswordMatchValidator("password", "passwordConfirm"),
     })
 
   }
-  ngOnInit():void{
+  ngOnInit(): void {
     this.userService.Get().subscribe({
-      next: (data)=> {
-      
+      next: (data) => {
+
         var user = data.filter(user => user.email === this.user_cache['email'] && user.password === this.user_cache['password'])
         this.userId = user[0].id;
         this.userForm.patchValue(user[0]);
       }
     })
   }
-   onSubmit() {
+  onSubmit() {
     this.submitted = true;
     if (this.userForm.invalid) return
-   this.userForm.get('passwordConfirm')?.disable();
-  var result = this.userForm.value
-    this.userService.Update( this.userId,result).subscribe({
-      next: (success)=> {
-          this.router.navigateByUrl('/newsletter')
+    this.userForm.get('passwordConfirm')?.disable();
+    var result = this.userForm.value
+    this.userService.Update(this.userId, result).subscribe({
+      next: (success) => {
+        this.router.navigateByUrl('/newsletter')
       },
-      error: (err)=>{
+      error: (err) => {
         console.log(err)
       }
     })
-   
+
   }
   searchCep() {
     const cep = this.userForm.get('cep')?.value;
@@ -111,7 +116,23 @@ export class EditUserComponent {
     });
   }
 
-  goToBack(){
+  goToBack() {
     this.router.navigateByUrl('/newsletter')
+  }
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+    if (this.showPassword) {
+      this.typeInputPassword = 'password'
+    }else{
+      this.typeInputPassword = 'text'
+    }
+  }
+   toggleShowConfirmPassword() {
+    this.showConfirmPassword = !this.showConfirmPassword;
+    if (this.showConfirmPassword) {
+      this.typeInputConfirmPassword = 'password'
+    }else{
+      this.typeInputConfirmPassword = 'text'
+    }
   }
 }

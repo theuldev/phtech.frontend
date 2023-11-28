@@ -29,9 +29,11 @@
 
                 <div class="form-floating mb-4">
 
-                    <input type="password" id="floating-input-password" class="form-control rounded-4"
+                    <input type="{{this.typeInputPassword}}" id="floating-input-password" class="form-control rounded-4"
                         placeholder="Senha" formControlName="password" />
+                                       
                     <label id="label-password" class="form-label" for="floating-input-password">Senha</label>
+                    <i id="togglePassword" [ngClass]="{'bi bi-eye-slash': showPassword, 'bi bi-eye': !showPassword }" (click)="toggleShowPassword()"></i>
                     <div class="text-danger text-start pt-2 fw-semibold" style="font-size: 13px;"
                         *ngIf="submitted && f['password'].errors">
                         <div *ngIf=" submitted && f['password'].errors['required']">A senha é obrigatória

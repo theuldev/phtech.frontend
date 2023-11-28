@@ -23,9 +23,9 @@
     border: 0px;
     font-weight: 600;
 }
-#sex-floating-select{
-    
-}
+
+#sex-floating-select {}
+
 .form-control {
     font-size: 15px;
     background-color: $background-tertiary-color;
@@ -93,4 +93,16 @@
     transition: all 0.3s;
     color: $color-white-primary;
 
+}
+
+#togglePassword {
+    position: relative;
+    left: 120px;
+    bottom: 38px;
+}
+
+#toggleConfirmPassword {
+    position: relative;
+    left: 120px;
+    bottom: 38px;
 }

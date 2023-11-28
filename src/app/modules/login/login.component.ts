@@ -19,11 +19,12 @@ export class LoginComponent {
   submitted = false;
   userForm!: FormGroup;
   isValid!: boolean;
-
+  showPassword = false;
+  typeInputPassword = 'text'
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
-          this.localService.clearData();
-        }
+      this.localService.clearData();
+    }
 
   }
 
@@ -75,5 +76,13 @@ export class LoginComponent {
       }
     });
 
+  }
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+    if (this.showPassword) {
+      this.typeInputPassword = 'password'
+    }else{
+      this.typeInputPassword = 'text'
+    }
   }
 }
